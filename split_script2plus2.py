@@ -3,11 +3,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
 import re
-import datetime
 import csv
-
-month = datetime.datetime.now().month
-today = datetime.datetime.now().day
 
 
 driver = webdriver.Chrome()
@@ -19,12 +15,9 @@ f = raw_input('''
  ''')
 raw_data = driver.page_source
 
-
-res={}
-
-
 p_data = BeautifulSoup(raw_data, 'html.parser')
 tag = p_data.body.div
+res={}
 
 
 queues = {
@@ -127,7 +120,7 @@ b = [
 c = [
     '950091088393640',
     '271371510020735',
-    #'1763128587236607'
+    '1763128587236607'
     ]
 
 
@@ -142,42 +135,11 @@ d = [
 
 e = [
     '1382008185176931',
-    #'248425082235073',
+    '248425082235073',
     '140458053063402',
     '1675860282737057',
     '1720265718224160',
     ]
-with open ('split_csv.csv', 'wb') as split_csv:
-    split_writer = csv.writer(split_csv, delimiter=',')
-
-    print 'A ↓ \n'
-    for q in a:
-        print queues[q] + ': ' + res[queues[q]]
-        split_writer.writerow([queues[q], res[queues[q]]])
-        print '\n' + '\n'
 
 
-    print 'B ↓ \n'
-    for q in b:
-        print queues[q] + ': ' + res[queues[q]]
-        split_writer.writerow([queues[q], res[queues[q]]])
-        print '\n' + '\n'
-
-    print 'C ↓ \n'
-    for q in c:
-        if q in res[queues[q]] and q in queues:
-            print queues[q] + ': ' + res[queues[q]]
-            split_writer.writerow([queues[q], res[queues[q]]])
-            print '\n' + '\n'
-
-    print 'D ↓ \n'
-    for q in d:
-        print queues[q] + ': ' + res[queues[q]]
-        split_writer.writerow([queues[q], res[queues[q]]])
-        print '\n' + '\n'
-
-    print 'E ↓ \n'
-    for q in e:
-        print queues[q] + ': ' + res[queues[q]]
-        split_writer.writerow([queues[q], res[queues[q]]])
-        print '\n' + '\n'
+sender.email_sender('split_csv.csv', res, recipients=['christophersims@fb.com'])
