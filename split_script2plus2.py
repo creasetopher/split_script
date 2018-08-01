@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import time
 import re
 import csv
+import email_automator as sender
 
 
 driver = webdriver.Chrome()
