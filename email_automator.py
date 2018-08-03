@@ -10,7 +10,7 @@ today = str(datetime.datetime.now().day)
 
 
 def email_sender(file, data, recipients, server = "127.0.0.1", **kwargs):
-    me = 'GriffinSafety@fb.com'
+    me = 'testemail1@fb.com'
     msg = MIMEMultipart()
     msg['Subject'] = month + "/" + today + 'Data'
     msg['From'] = me
